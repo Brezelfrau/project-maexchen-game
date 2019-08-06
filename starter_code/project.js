@@ -55,7 +55,7 @@ function rollDice() {
 
     //proof 21
     if (values[values.length - 1] == "21") {
-        alert("Whoop whoop, 21!")
+        setTimeout(function () { alert("Whoop whoop, 21!"); }, 10);
         if (activePlayer1 == true) {
             failurePlayer2 = failurePlayer2 + 1;
         } else {
