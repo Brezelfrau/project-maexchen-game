@@ -15,11 +15,11 @@ let confetti;
 function switchPlayer() {
     if (activePlayer1 == true) {
         activePlayer1 = false;
-        document.getElementById('player-2').style.backgroundColor = 'green';
+        document.getElementById('player-2').style.backgroundColor = 'grey';
         document.getElementById('player-1').style.backgroundColor = '';
     } else {
         activePlayer1 = true;
-        document.getElementById('player-1').style.backgroundColor = 'green';
+        document.getElementById('player-1').style.backgroundColor = 'grey';
         document.getElementById('player-2').style.backgroundColor = '';
     }
 }
@@ -84,13 +84,15 @@ function hideDice() {
 
 // start the game
 function startGame() {
-    // dice1, dice2 = default ?
     activePlayer1 = false;
     switchPlayer();
     failurePlayer1 = 0;
     failurePlayer2 = 0;
     values = [];
     confetti.stop();
+    document.getElementById('hide-btn').innerHTML = 'Hide';
+    document.getElementById('dice-image').style.display = '';
+    document.getElementById('dice2-image').style.display = '';
     document.getElementById('fails-player-1').innerHTML = `${failurePlayer1}`;
     document.getElementById('fails-player-2').innerHTML = `${failurePlayer2}`;
 
@@ -147,7 +149,6 @@ window.onload = () => {
 
     document.getElementById('ok').addEventListener('click', getInput);
     document.getElementById('start-btn').addEventListener('click', startGame);
-
 
 
 

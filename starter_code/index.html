@@ -2,6 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
     <script type="text/javascript" src="project.js"></script>
     <script
       type="text/javascript"
@@ -20,23 +28,47 @@
           <img id="dice2-image" src="../images/dice-2.png" />
         </div>
         <div class="button-box">
-          <button id="start-btn" class="buttons">New Game</button>
-          <button id="dice-btn" class="buttons">Roll the dice</button>
-          <button id="hide-btn" class="buttons">Hide</button>
-          <button id="fool-btn" class="buttons">Fool</button>
+          <!--<button id="start-btn" class="buttons">New Game</button>-->
+          <button
+            type="button"
+            id="start-btn"
+            class="btn btn-secondary buttons"
+          >
+            New Game
+          </button>
+
+          <!-- <button id="dice-btn" class="buttons">Roll the dice</button> -->
+          <button type="button" id="dice-btn" class="btn btn-light buttons">
+            Roll the Dice
+          </button>
+
+          <!-- <button id="hide-btn" class="buttons">Hide</button> -->
+          <button type="button" id="hide-btn" class="btn btn-light buttons">
+            Hide
+          </button>
+
+          <!--<button id="fool-btn" class="buttons">Fool</button> -->
+          <button type="button" id="fool-btn" class="btn btn-light buttons">
+            Fool
+          </button>
+
           <input type="number" id="input-field" />
-          <button id="ok" class="buttons">OK</button>
+
+          <!-- <button id="ok" class="buttons">OK</button> -->
+          <button type="button" id="ok" class="btn btn-light buttons">
+            Ok
+          </button>
         </div>
       </div>
 
       <div class="below">
         <div class="shadow container">
-          <div id="player-1" class="container2">
+          <div id="player-1" class="container2 player-styling">
             Player 1
             <div>failure</div>
             <div id="fails-player-1">0</div>
           </div>
-          <div id="player-2" class="container2">
+          <div id="player-2" class="container2 player-styling">
             Player 2
             <div>failure</div>
             <div id="fails-player-2">0</div>
