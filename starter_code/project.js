@@ -32,17 +32,19 @@ function rollDice() {
 
     // random number of 2 dices
     dice = Math.floor((Math.random() * 6) + 1);
-    document.getElementById('dice-image').src = `../images/dice-${dice}.png`
-
     dice2 = Math.floor((Math.random() * 6) + 1);
-    document.getElementById('dice2-image').src = `../images/dice-${dice2}.png`
+
 
     if (dice > dice2) {
         values.push(dice + "" + dice2)
-    } else if (dice2 > dice) {
+
+        document.getElementById('dice-image').src = `../images/dice-${dice}.png`
+        document.getElementById('dice2-image').src = `../images/dice-${dice2}.png`
+    } else if (dice2 >= dice) {
         values.push(dice2 + "" + dice)
-    } else {
-        values.push(dice2 + "" + dice)
+
+        document.getElementById('dice-image').src = `../images/dice-${dice2}.png`
+        document.getElementById('dice2-image').src = `../images/dice-${dice}.png`
     }
 
     // console.log("values", values)
@@ -55,17 +57,34 @@ function rollDice() {
 
     //proof 21
     if (values[values.length - 1] == "21") {
-        setTimeout(function () { alert("Whoop whoop, 21!"); }, 10);
+        //setTimeout(showNyanCat, 10);
         if (activePlayer1 == true) {
             failurePlayer2 = failurePlayer2 + 1;
         } else {
             failurePlayer1 = failurePlayer1 + 1;
         }
-        switchPlayer();
+        if (checkWinner() == false) {
+            setTimeout(showNyanCat, 10);
+            switchPlayer();
+        }
     }
     document.getElementById('fails-player-1').innerHTML = `${failurePlayer1}`;
     document.getElementById('fails-player-2').innerHTML = `${failurePlayer2}`;
 
+}
+function showNyanCat() {
+    Swal.fire({
+        title: 'Whoop, whoop - 21!',
+        width: 600,
+        padding: '3em',
+        background: '#fff',
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("../images/nyan-cat.gif")
+          center left
+          no-repeat
+        `
+    })
 }
 
 // hide the dice
@@ -116,28 +135,45 @@ function fool() {
 
 
     if (lastItem != inputValue) {
-        alert("It's a lie") // --> "rolling the dice again"
+        //alert("It's a lie") // --> "rolling the dice again"
+        Swal.fire('It was a lie!')
         if (activePlayer1 == true) {
             failurePlayer1 = failurePlayer1 + 1;
         } else {
             failurePlayer2 = failurePlayer2 + 1;
         }
+        checkWinner();
     } else {
-        confetti.start(); // Hier?
-        alert("It's true")
+        Swal.fire('It was true!')
         if (activePlayer1 == false) {
             failurePlayer1 = failurePlayer1 + 1;
         } else {
             failurePlayer2 = failurePlayer2 + 1;
         }
+        if (checkWinner() == false) {
+            switchPlayer();
+        }
 
-        switchPlayer();
     }
     document.getElementById('fails-player-1').innerHTML = `${failurePlayer1}`;
     document.getElementById('fails-player-2').innerHTML = `${failurePlayer2}`;
     // console.log("lastItem", lastItem)
     // console.log("lastItem", inputValue)
 
+}
+
+// winning
+function checkWinner() {
+    if (failurePlayer1 == 2) {
+        confetti.start();
+        Swal.fire('Player 2 wins! :)')
+        return true;
+    } else if (failurePlayer2 == 2) {
+        confetti.start();
+        Swal.fire('Player 2 wins! :)')
+        return true;
+    }
+    return false;
 }
 
 window.onload = () => {
