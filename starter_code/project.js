@@ -47,11 +47,6 @@ function rollDice() {
         document.getElementById('dice2-image').src = `../images/dice-${dice}.png`
     }
 
-    // console.log("values", values)
-
-    // console.log("player1", player1)
-    // console.log("player2", player2)
-
     //set hide-btn to hide again (bug fixing)
     document.getElementById('hide-btn').innerHTML = 'Hide';
 
@@ -130,8 +125,6 @@ function fool() {
     let lastItem = values.slice(-1).pop()
     let inputValue = document.getElementById("input-field").value
     document.getElementById("input-field").value = '';
-    //console.log("lastItem", lastItem)
-    //console.log("inputValue", inputValue)
 
 
     if (lastItem != inputValue) {
@@ -157,8 +150,7 @@ function fool() {
     }
     document.getElementById('fails-player-1').innerHTML = `${failurePlayer1}`;
     document.getElementById('fails-player-2').innerHTML = `${failurePlayer2}`;
-    // console.log("lastItem", lastItem)
-    // console.log("lastItem", inputValue)
+
 
 }
 
@@ -170,7 +162,7 @@ function checkWinner() {
         return true;
     } else if (failurePlayer2 == 2) {
         confetti.start();
-        Swal.fire('Player 2 wins! :)')
+        Swal.fire('Player 1 wins! :)')
         return true;
     }
     return false;
